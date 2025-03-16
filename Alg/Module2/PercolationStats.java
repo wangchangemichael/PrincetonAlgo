@@ -5,8 +5,8 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
     private double[] result;
-    private double mean = 0.0;
-    private double stddev = 0.0;
+    private double mean;
+    private double stddev;
 
     // perform independent trials on an n-by-n grid
     public PercolationStats(int n, int trials) {
@@ -19,7 +19,6 @@ public class PercolationStats {
         for (int i = 1; i <= trials; i++) {
             Percolation newtrial = new Percolation(n);
             int sum = 0;
-            int j = 0;
             while (!newtrial.percolates()) {
                 int randNum = StdRandom.uniformInt(n * n);
                 int row = randNum / n + 1;

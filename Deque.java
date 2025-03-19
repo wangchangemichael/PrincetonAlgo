@@ -14,7 +14,7 @@ public class Deque<Item> implements Iterable<Item> {
         size = 0;
     }
 
-    ;
+
 
 
     private class node {

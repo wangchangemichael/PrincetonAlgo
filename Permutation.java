@@ -10,9 +10,9 @@ public class Permutation {
         while (!StdIn.isEmpty()) {
             String next = StdIn.readString();
             count++;
-            if (count <k){
+            if (count < k) {
                 strq.enqueue(next);
-            }else{
+            } else {
                 strq.dequeue();
                 strq.enqueue(next);
             }

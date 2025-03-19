@@ -8,8 +8,9 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     Item[] items;
     int size;
     int head;
+
     // construct an empty randomized queue
-    public RandomizedQueue(){
+    public RandomizedQueue() {
         items = (Item[]) new Object[2];
         head = 0;
         size = 0;
@@ -17,22 +18,22 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
 
     // is the randomized queue empty?
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
     // return the number of items on the randomized queue
-    public int size(){
+    public int size() {
         return size;
     }
 
     // add the item
-    public void enqueue(Item item){
+    public void enqueue(Item item) {
         if (item == null) throw new IllegalArgumentException();
-        if(size == items.length){
-            Item[] itemsnew = (Item[]) new Object[items.length*2];
+        if (size == items.length) {
+            Item[] itemsnew = (Item[]) new Object[items.length * 2];
             int pInNew = 0;
-            for (int i = 0; i < items.length; i++){
+            for (int i = 0; i < items.length; i++) {
                 if (items[i] != null) itemsnew[pInNew++] = items[i];
             }
             items = itemsnew;
@@ -43,20 +44,21 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // remove and return a random item
-    public Item dequeue(){
+    public Item dequeue() {
         if (size == 0) throw new NoSuchElementException();
         int len = items.length;
         int choice = StdRandom.uniformInt(len);
-        while(items[choice] == null){
+        while (items[choice] == null) {
             choice = StdRandom.uniformInt(len);
-        };
+        }
+        ;
         Item res = items[choice];
         items[choice] = null;
         size--;
-        if (size > 0 && size == items.length/4){
-            Item[] itemsnew = (Item[]) new Object[items.length/2];
+        if (size > 0 && size == items.length / 4) {
+            Item[] itemsnew = (Item[]) new Object[items.length / 2];
             int pInNew = 0;
-            for (int i = 0; i < items.length; i++){
+            for (int i = 0; i < items.length; i++) {
                 if (items[i] != null) itemsnew[pInNew++] = items[i];
             }
             items = itemsnew;
@@ -65,38 +67,39 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     }
 
     // return a random item (but do not remove it)
-    public Item sample(){
+    public Item sample() {
         if (size == 0) throw new NoSuchElementException();
         int len = items.length;
         int choice = StdRandom.uniformInt(len);
-        while(items[choice] == null){
+        while (items[choice] == null) {
             choice = StdRandom.uniformInt(len);
-        };
+        }
+        ;
         return items[choice];
     }
 
     // return an independent iterator over items in random order
-    public Iterator<Item> iterator(){
+    public Iterator<Item> iterator() {
         return new RandomizedQueueIterator();
 
     }
-
-
 
 
     public class RandomizedQueueIterator implements Iterator<Item> {
 
         private int current;
         private Item[] storage;
-        public RandomizedQueueIterator(){
+
+        public RandomizedQueueIterator() {
             storage = (Item[]) new Object[size];
             int pInNew = 0;
-            for (int i = 0; i < items.length; i++){
+            for (int i = 0; i < items.length; i++) {
                 if (items[i] != null) storage[pInNew++] = items[i];
             }
             StdRandom.shuffle(storage);
-            current = size-1;
+            current = size - 1;
         }
+
         @Override
         public boolean hasNext() {
             return current >= 0;
@@ -118,7 +121,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
 
     // unit testing (required)
-    public static void main(String[] args){
+    public static void main(String[] args) {
         RandomizedQueue<Integer> rq = new RandomizedQueue<>();
         System.out.println(rq.isEmpty());
         rq.enqueue(1);
